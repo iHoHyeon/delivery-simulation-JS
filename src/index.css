@@ -1,0 +1,96 @@
+:root {
+  --font-small: 16px;
+  --font-medium: 24px;
+  --font-large: 32px;
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--font-small);
+  font-style: normal;
+
+  margin: 0;
+
+  min-width: max-content;
+  height: 100vh;
+
+  background-color: #e9e7e3;
+}
+
+.title {
+  padding: 10px;
+  font-size: var(--font-large);
+  font-weight: 800;
+}
+
+.description {
+  padding: 10px;
+  font-size: var(--font-small);
+}
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: space-evenly;
+
+  width: 100vw;
+  height: calc(100vh - 200px);
+}
+
+.board {
+  position: relative;
+  display: flex;
+
+  background-color: rgb(245, 245, 244);
+  box-shadow: 2px 2px 2px rgba(126, 101, 101, 0.25);
+  border-radius: 15px;
+}
+
+.label {
+  font-size: var(--font-medium);
+  font-weight: 700;
+  padding: 5px 0px;
+  margin: auto;
+}
+
+.pos {
+  flex-direction: column;
+
+  width: 30%;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.order {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.dashboard {
+  flex-direction: column;
+
+  width: 60%;
+}
+
+.dash {
+  display: flex;
+  position: relative;
+  height: 100%;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.dash .list {
+  height: 100%;
+  padding: 10px 20px;
+  border: 2px solid rgb(124, 113, 113);
+  border-radius: 15px;
+}

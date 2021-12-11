@@ -8,8 +8,8 @@ export default class POS {
     this.orderQueue = [];
   }
 
-  addOrder(...orders) {
-    this.orderQueue.push(...orders);
+  addOrder(order) {
+    this.orderQueue.push(order);
     this.eventEmitter.emit('addOrder');
   }
 }

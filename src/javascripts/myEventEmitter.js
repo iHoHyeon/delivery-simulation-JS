@@ -10,9 +10,9 @@ export default class MyEventEmitter {
     return this;
   }
 
-  emit(eventName) {
+  emit(eventName, ...args) {
     if (this.onListner.get(eventName)) {
-      this.onListner.get(eventName).forEach((fn) => fn());
+      this.onListner.get(eventName).forEach((fn) => fn(...args));
       return true;
     }
     return false;

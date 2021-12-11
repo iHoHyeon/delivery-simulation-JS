@@ -4,5 +4,6 @@
   "main": "index.js",
   "repository": "https://github.com/iHoHyeon/delivery-simulation-JS.git",
   "author": "iHoHyeon <hyunee169@naver.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module"
 }

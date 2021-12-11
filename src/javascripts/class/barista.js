@@ -1,38 +1,39 @@
-/*
-  바리스타
-
-  startMaking: async함수로 비동기 병렬처리
-*/
 import { MENU_TIME } from '../constant.js';
 
-const makingAmericano = (count) =>
-  new Promise((res) => {
-    setTimeout(res, 1000 * count);
-  });
-const makingVanillaLatte = (count) =>
-  new Promise((res) => {
-    setTimeout(res, 2000 * count);
-  });
-const makingHoneyBread = (count) =>
-  new Promise((res) => {
-    setTimeout(res, 5000 * count);
-  });
-
 export default class Barista {
-  constructor(eventEmitter) {
+  constructor(eventEmitter, name) {
     this.eventEmitter = eventEmitter;
+    this.name = name;
+
     this.nowMaking = new Map();
-    this.makingSkill = { 아메리카노: makingAmericano, 바닐라라떼: makingVanillaLatte, 허니브레드: makingHoneyBread };
+    this.makingSkill = { 아메리카노: Barista.makingAmericano, 바닐라라떼: Barista.makingVanillaLatte, 허니브레드: Barista.makingHoneyBread };
   }
 
   async startMaking(customer, detail) {
     const [menu, count] = detail;
 
     this.nowMaking.set(detail, { customer, menu, count });
+    this.eventEmitter.emit('startMaking', customer, menu, count, this.name);
     await this.makingSkill[menu](count);
-    this.nowMaking.delete(detail);
-    console.log('finishMaking', customer, menu, count);
-    this.eventEmitter.emit('finishMaking');
-    return;
+
+    return this.finishMaking(detail, customer, menu, count);
   }
+
+  finishMaking(detail, customer, menu, count) {
+    this.nowMaking.delete(detail);
+    this.eventEmitter.emit('finishMaking', customer, menu, count, this.name);
+  }
+
+  static makingAmericano = (count) =>
+    new Promise((res) => {
+      setTimeout(res, MENU_TIME['아메리카노'] * count);
+    });
+  static makingVanillaLatte = (count) =>
+    new Promise((res) => {
+      setTimeout(res, MENU_TIME['바닐라라떼'] * count);
+    });
+  static makingHoneyBread = (count) =>
+    new Promise((res) => {
+      setTimeout(res, MENU_TIME['허니브레드'] * count);
+    });
 }

@@ -10,4 +10,21 @@ export default class DashBoard {
     eventEmitter.on('startMaking', (customer, menu, count, name) => console.log('startMaking', customer, menu, count, `by ${name}`));
     eventEmitter.on('finishMaking', (customer, menu, count, name) => console.log('finishMaking', customer, menu, count, `by ${name}`));
   }
+
+  getHTML() {
+    return `
+    <div class="dashboard board">
+      <div class="dash">
+        <div class="label">대시보드</div>
+        <div class="list">
+          <div>현황</div>
+          <div>현황</div>
+          <div>현황</div>
+          <div>현황</div>
+          <div>현황</div>
+        </div>
+      </div>
+    </div>
+    `;
+  }
 }

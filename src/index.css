@@ -62,10 +62,48 @@ body {
   width: 30%;
 }
 
+.pos .customer {
+  padding: 10px;
+}
+
+.pos .customer div {
+  margin-bottom: 10px;
+}
+
 .menu {
   display: flex;
   flex-direction: column;
   padding: 10px;
+}
+
+.menu div {
+  margin-bottom: 10px;
+}
+
+.input {
+  display: flex;
+  margin-left: 20px;
+}
+
+.input input {
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.pos button {
+  width: 30%;
+  border-radius: 10px;
+  background-color: #fff;
+  margin: auto;
+}
+
+.pos button:disabled {
+  pointer-events: none;
+  background-color: rgb(197, 197, 197);
+}
+
+.pos button:hover {
+  background-color: rgb(231, 229, 218);
 }
 
 .order {

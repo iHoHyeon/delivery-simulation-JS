@@ -34,6 +34,7 @@ export default class DashBoard {
       if (!this.list) this.list = document.querySelector('.dashboard .list');
       if (type === 'addOrder' || type === 'finishOrder') args = Object.entries(args[0])[0];
       this.list.insertAdjacentHTML('beforeend', `<li>${DASHBOARD_OUTPUT[type](...args)}</li>`);
+      this.list.scrollTop = this.list.scrollHeight;
     };
   }
 }

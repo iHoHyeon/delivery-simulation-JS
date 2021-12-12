@@ -8,6 +8,13 @@ export const DASHBOARD_OUTPUT = {
   finishMaking: (customer, menu, count, baristaName) => `${baristaName}가 메뉴 제작을 마쳤습니다. (${customer} : ${menu} ${count}개)`,
 };
 
+export const DASHBOARD_LOG_CLASS = {
+  addOrder: 'order',
+  finishOrder: 'order',
+  startMaking: '',
+  finishMaking: '',
+};
+
 const menuToLog = (menu) =>
   Object.entries(menu)
     .reduce((acc, arr) => [...acc, arr.join(':')], [])

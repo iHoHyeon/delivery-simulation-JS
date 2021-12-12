@@ -1,4 +1,4 @@
-import { DASHBOARD_OUTPUT } from '../constant.js';
+import { DASHBOARD_OUTPUT, DASHBOARD_LOG_CLASS } from '../constant.js';
 
 export default class DashBoard {
   list;
@@ -35,7 +35,10 @@ export default class DashBoard {
       if (type === 'addOrder' || type === 'finishOrder') args = Object.entries(args[0])[0];
       this.list.insertAdjacentHTML(
         'beforeend',
-        `<li><span>${DASHBOARD_OUTPUT[type](...args)}</span> <span class="time">${this.getTimerInterface()}</span></li>`
+        `<li>
+          <span class="${DASHBOARD_LOG_CLASS[type]}">${DASHBOARD_OUTPUT[type](...args)}</span>
+          <span class="time">${this.getTimerInterface()}</span>
+        </li>`
       );
       this.list.scrollTop = this.list.scrollHeight;
     };

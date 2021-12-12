@@ -106,7 +106,7 @@ body {
   background-color: rgb(231, 229, 218);
 }
 
-.order {
+.pos .order {
   display: flex;
   justify-content: space-evenly;
   padding: 10px;
@@ -153,6 +153,10 @@ body {
   justify-content: space-between;
   list-style-type: none;
   margin-bottom: 10px;
+}
+
+.dash li .order {
+  font-weight: bold;
 }
 
 .dash li .time {

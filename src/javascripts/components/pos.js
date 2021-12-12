@@ -38,7 +38,7 @@ export default class POS {
     };
 
     const clearOrder = () => {
-      [...orderCountList, customerNameInput].forEach((input) => (input.value = 0));
+      [...orderCountList, customerNameInput].forEach((input) => (input.value = ''));
     };
 
     const submitOrder = () => {
@@ -66,6 +66,6 @@ export default class POS {
 
   addOrder(order) {
     this.orderQueue.push(order);
-    this.eventEmitter.emit('addOrder');
+    this.eventEmitter.emit('addOrder', order);
   }
 }

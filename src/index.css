@@ -131,4 +131,16 @@ body {
   padding: 10px 20px;
   border: 2px solid rgb(124, 113, 113);
   border-radius: 15px;
+
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.dash .list::-webkit-scrollbar {
+  display: none;
+}
+
+.dash li {
+  list-style-type: none;
 }

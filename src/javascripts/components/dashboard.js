@@ -7,9 +7,9 @@ export default class DashBoard {
     this.eventEmitter = eventEmitter;
 
     eventEmitter.on('addOrder', this.addLog('addOrder').bind(this));
-    eventEmitter.on('finishOrder', (order) => console.log('finishOrder', order));
-    eventEmitter.on('startMaking', (customer, menu, count, baristaName) => console.log('startMaking', customer, menu, count, `by ${baristaName}`));
-    eventEmitter.on('finishMaking', (customer, menu, count, baristaName) => console.log('finishMaking', customer, menu, count, `by ${baristaName}`));
+    eventEmitter.on('finishOrder', this.addLog('finishOrder').bind(this));
+    eventEmitter.on('startMaking', this.addLog('startMaking').bind(this));
+    eventEmitter.on('finishMaking', this.addLog('finishMaking').bind(this));
   }
 
   getHTML() {

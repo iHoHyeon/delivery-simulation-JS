@@ -1,8 +1,8 @@
-import MyEventEmitter from './class/myEventEmitter.js';
-import POS from './class/pos.js';
-import Manager from './class/manager.js';
-import Barista from './class/barista.js';
-import DashBoard from './class/dashboard.js';
+import MyEventEmitter from './components/myEventEmitter.js';
+import POS from './components/pos.js';
+import Manager from './components/manager.js';
+import Barista from './components/barista.js';
+import DashBoard from './components/dashboard.js';
 
 const eventEmitter = new MyEventEmitter();
 
@@ -24,4 +24,19 @@ const testOrder = () => {
   pos.addOrder({ E: { 허니브레드: 1 } });
 };
 
-testOrder();
+const setLayout = () => {
+  const container = document.querySelector('.container');
+  container.insertAdjacentHTML('beforeend', pos.getHTML());
+  container.insertAdjacentHTML('beforeend', dashBoard.getHTML());
+};
+
+const setEvent = () => {
+  pos.setDOMEvent();
+};
+
+const init = () => {
+  setLayout();
+  setEvent();
+};
+
+window.addEventListener('load', init);

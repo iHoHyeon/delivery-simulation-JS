@@ -1,5 +1,7 @@
 # 객체지향 배달주문
 
+[Delivery Simulation v1.0](https://ihohyeon.github.io/delivery-simulation-JS/src/)
+
 ## 목표
 
 - 단일 스레드에서 비동기 병렬처리
@@ -32,3 +34,10 @@
 - 동시에 하나의 카페메뉴만 제작할 수 있다.
 - 하나의 메뉴 제작을 시작하면 `startMaking` 이벤트를 발생한다.
 - 하나의 메뉴 제작을 마치면 `finishMaking` 이벤트를 발생한다.
+
+### DashBoard
+
+- 가게 대시보드
+- 가게에서 일어나는 모든 일의 현환판이다.
+- 내부적으로 타이머를 갖고 보여준다.
+- 발생하는 이벤트 로그를 보여준다.

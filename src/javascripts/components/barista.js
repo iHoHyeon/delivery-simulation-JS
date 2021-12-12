@@ -26,14 +26,14 @@ export default class Barista {
 
   static makingAmericano = (count) =>
     new Promise((res) => {
-      setTimeout(res, MENU_TIME['아메리카노'] * count);
+      setTimeout(res, MENU_TIME['아메리카노'] * 2 * count);
     });
   static makingVanillaLatte = (count) =>
     new Promise((res) => {
-      setTimeout(res, MENU_TIME['바닐라라떼'] * count);
+      setTimeout(res, MENU_TIME['바닐라라떼'] * 2 * count);
     });
   static makingHoneyBread = (count) =>
     new Promise((res) => {
-      setTimeout(res, MENU_TIME['허니브레드'] * count);
+      setTimeout(res, MENU_TIME['허니브레드'] * 2 * count);
     });
 }

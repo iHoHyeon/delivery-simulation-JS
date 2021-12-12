@@ -126,6 +126,12 @@ body {
   padding: 10px;
 }
 
+.dash .timer {
+  position: absolute;
+  top: var(--font-medium);
+  right: var(--font-medium);
+}
+
 .dash .list {
   height: 100%;
   padding: 10px 20px;
@@ -142,6 +148,14 @@ body {
 }
 
 .dash li {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
   list-style-type: none;
   margin-bottom: 10px;
+}
+
+.dash li .time {
+  font-size: 12px;
+  font-weight: bold;
 }

@@ -6,6 +6,9 @@ export const DASHBOARD_OUTPUT = {
 
   startMaking: (customer, menu, count, baristaName) => `${baristaName}가 메뉴 제작을 시작했습니다. (${customer} : ${menu} ${count}개)`,
   finishMaking: (customer, menu, count, baristaName) => `${baristaName}가 메뉴 제작을 마쳤습니다. (${customer} : ${menu} ${count}개)`,
+
+  startRiding: (customer, menu, riderName) => `${riderName}가 고객 ${customer}의 주문을 배달 시작했습니다. (${menuToLog(menu)})`,
+  finishRiding: (customer, menu, riderName) => `${riderName}가 고객 ${customer}의 주문을 배달 완료했습니다. (${menuToLog(menu)})`,
 };
 
 export const DASHBOARD_LOG_CLASS = {
@@ -13,6 +16,8 @@ export const DASHBOARD_LOG_CLASS = {
   finishOrder: 'order',
   startMaking: '',
   finishMaking: '',
+  startRiding: 'riding',
+  finishRiding: 'riding',
 };
 
 const menuToLog = (menu) =>

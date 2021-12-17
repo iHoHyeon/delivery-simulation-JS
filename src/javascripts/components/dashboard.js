@@ -12,6 +12,8 @@ export default class DashBoard {
     eventEmitter.on('finishOrder', this.addLog('finishOrder').bind(this));
     eventEmitter.on('startMaking', this.addLog('startMaking').bind(this));
     eventEmitter.on('finishMaking', this.addLog('finishMaking').bind(this));
+    eventEmitter.on('startRiding', this.addLog('startRiding').bind(this));
+    eventEmitter.on('finishRiding', this.addLog('finishRiding').bind(this));
   }
 
   getHTML() {
@@ -33,6 +35,8 @@ export default class DashBoard {
     return function (...args) {
       if (!this.list) this.list = document.querySelector('.dashboard .list');
       if (type === 'addOrder' || type === 'finishOrder') args = Object.entries(args[0])[0];
+      if (type === 'startRiding' || type === 'finishRiding') args = [...Object.entries(args[0])[0], args[1]];
+      console.log(args);
       this.list.insertAdjacentHTML(
         'beforeend',
         `<li>

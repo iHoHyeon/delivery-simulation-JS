@@ -159,6 +159,11 @@ body {
   font-weight: bold;
 }
 
+.dash li .riding {
+  color: rgb(117, 65, 65);
+  font-weight: bold;
+}
+
 .dash li .time {
   font-size: 12px;
   font-weight: bold;

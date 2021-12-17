@@ -1,4 +1,5 @@
 import Barista from './barista.js';
+import Rider from './riders.js';
 
 export default class Manager {
   static instance;
@@ -8,14 +9,26 @@ export default class Manager {
 
     this.eventEmitter = eventEmitter;
     this.pos = pos;
+    this.finishedOrders = [];
+
     this.baristas = new Set();
+    this.riders = new Set();
+
     this.eventEmitter.on('addOrder', this.checkOrderQueue.bind(this));
     this.eventEmitter.on('finishMaking', this.checkOrderQueue.bind(this));
+    this.eventEmitter.on('finishOrder', this.addFinishedOrders.bind(this));
+    this.eventEmitter.on('finishOrder', this.checkFinishedOrderQueue.bind(this));
   }
 
   hireBaristas(...baristas) {
     baristas.forEach((barista) => {
       if (barista instanceof Barista) this.baristas.add(barista);
+    });
+  }
+
+  hireRiders(...riders) {
+    riders.forEach((rider) => {
+      if (rider instanceof Rider) this.riders.add(rider);
     });
   }
 
@@ -31,6 +44,18 @@ export default class Manager {
     await Promise.all(menuQueue.map((menuOrder) => this.orderLooper(customer, menuOrder)));
 
     this.eventEmitter.emit('finishOrder', order);
+  }
+
+  async checkFinishedOrderQueue() {
+    console.log(this.riders);
+    console.log('checkFinishedOrder');
+    const order = this.finishedOrders[0];
+
+    if (!order) return;
+
+    this.finishedOrders.shift();
+
+    await this.finishedOrderLooper(order);
   }
 
   orderLooper(customer, menuOrder) {
@@ -50,6 +75,23 @@ export default class Manager {
     });
   }
 
+  finishedOrderLooper(order) {
+    return new Promise((res, rej) => {
+      try {
+        const timerId = setInterval(() => {
+          const posibleRider = this.getPosibleRider();
+          if (posibleRider) {
+            clearInterval(timerId);
+            res(posibleRider.startRiding(order));
+          }
+        }, 0);
+      } catch (err) {
+        console.error(err);
+        rej();
+      }
+    });
+  }
+
   getPosibleBarista() {
     let posibleBarista;
     [...this.baristas].some((barista) => {
@@ -58,5 +100,19 @@ export default class Manager {
     });
 
     return posibleBarista;
+  }
+
+  getPosibleRider() {
+    let posibleRider;
+    [...this.riders].some((rider) => {
+      if (!rider.nowRiding) posibleRider = rider;
+      return !rider.nowRiding;
+    });
+
+    return posibleRider;
+  }
+
+  addFinishedOrders(order) {
+    this.finishedOrders = [...this.finishedOrders, order];
   }
 }
